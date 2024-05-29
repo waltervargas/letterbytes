@@ -15,25 +15,6 @@ func FindScanner() ([]sane.Device, error) {
 	return sane.Devices()
 }
 
-func Scan(scanner string, fileName string) error {
-	img, err := scan(scanner)
-	if err != nil {
-		return err
-	}
-
-	err = toPNG(img, fileName)
-	if err != nil {
-		return err
-	}
-
-	err = toTIFF(img, fileName)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 // name is string such as: escl:https://192.168.0.133:443
 func scan(name string) (*sane.Image, error) {
 	err := sane.Init()
@@ -52,7 +33,7 @@ func scan(name string) (*sane.Image, error) {
 	if err != nil {
 		return nil, err
 	}
-	_, err = scanner.SetOption("resolution", 150)
+	_, err = scanner.SetOption("resolution", 300)
 	if err != nil {
 		return nil, err
 	}

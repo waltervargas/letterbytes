@@ -35,6 +35,13 @@ func toPNG(img *sane.Image, fileName string) error {
 	if err != nil {
 		return err
 	}
-
 	return nil
+}
+
+func toTXT(img *sane.Image, fileName string) error {
+	text, err := OCR(img)
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(fileName+"_ocr.txt", []byte(text), 0644)
 }

@@ -27,7 +27,7 @@ func validateScannerName() {
 
 func main() {
 	validateScannerName()
-	err := letterbytes.Scan(os.Getenv("LETTERBYTES_SCANNER"), os.Args[1])
+	err := letterbytes.Run(os.Getenv("LETTERBYTES_SCANNER"), os.Args[1])
 	if err != nil {
 		panic(err)
 	}
